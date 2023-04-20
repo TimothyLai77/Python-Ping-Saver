@@ -25,7 +25,7 @@ while True:
     if(int(output[len(output)-1]) == 0):
         # find the time=xx.xxx ms pattern in the output
         ping = re.search('time=(.*)ms', output[1])
-        print(ping)
+        #(ping)
         if ping:
             pingTime = ping.group(1)
     else:
