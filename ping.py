@@ -13,23 +13,27 @@ count = 0 # number of pings
 # run until ctrl-c lul
 while True:
     # make the ping and save the output
-    output = subprocess.check_output('ping www.google.com -c 1', shell=True).decode('utf-8').strip().split('\n')
-    count+=1
-
+    output = subprocess.check_output('ping www.google.com -c 1; echo $?', shell=True).decode('utf-8').strip().split('\n')
+    #print(output)
+    count += 1
     # get date and time to string
     now = datetime.now()
     date_now = now.strftime('%m/%d/%Y')
     time_now = now.strftime('%H:%M:%S')
 
-    # find the time=xx.xxx ms pattern in the output
-    ping = re.search('time=(.*)ms', output[1])
-    if ping:
-        pingTime = ping.group(1)
+    # check if ping didn't exit with an error
+    if(int(output[len(output)-1]) == 0):
+        # find the time=xx.xxx ms pattern in the output
+        ping = re.search('time=(.*)ms', output[1])
+        print(ping)
+        if ping:
+            pingTime = ping.group(1)
     else:
-        pingTime = 'timedout'
-   
+        pingTime = 'error/timedout'
+    
     # write data to file
     toWrite = [date_now, time_now, str(count), pingTime]
+    #print(toWrite)
     with open(startTime+'_ping.csv', 'a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(toWrite)
