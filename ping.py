@@ -9,6 +9,8 @@ import csv
 now = datetime.now()
 startTime = now.strftime("%m%d%Y_%H%M")
 count = 0 # number of pings 
+average = 0
+sum = 0
 
 # run until ctrl-c lul
 while True:
@@ -28,6 +30,8 @@ while True:
         #(ping)
         if ping:
             pingTime = ping.group(1)
+            sum+=float(pingTime)
+            average=sum/count
     else:
         pingTime = 'error/timedout'
     
@@ -37,7 +41,8 @@ while True:
     with open(startTime+'_ping.csv', 'a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(toWrite)
-
+    
+    print('last: '+pingTime+'   Updated Average: '+str(average))
     # wait 
     time.sleep(1)
 
