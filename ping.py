@@ -36,7 +36,7 @@ while True:
         pingTime = 'error/timedout'
     
     # write data to file
-    toWrite = [date_now, time_now, str(count), pingTime]
+    toWrite = [date_now, time_now, pingTime]
     #print(toWrite)
     with open(startTime+'_ping.csv', 'a', newline='') as file:
         writer = csv.writer(file)
