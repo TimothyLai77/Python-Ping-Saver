@@ -7,7 +7,7 @@ import csv
 
 # for naming the file on script start
 now = datetime.now()
-startTime = now.strftime("%m%d%Y_%H%M")
+startTime = now.strftime("%m%d%Y")
 count = 0 # number of pings 
 average = 0
 sum = 0
