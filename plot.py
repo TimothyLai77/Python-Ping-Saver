@@ -24,7 +24,7 @@ if 'error/timedout' in dataFrame.values :
 # ============= Graph Stuff =============
 # ------------- Plot Raw Pings -------------
 plt.subplot(1, 2, 1)
-plt.scatter(dataFrame.Time, dataFrame.Ping,s=3, alpha=0.5,c=dataFrame.Ping, cmap='plasma') # plot
+plt.scatter(dataFrame.Time, dataFrame.Ping,s=3, c=dataFrame.Ping, cmap='plasma') # plot
 
 # get current axes and assign to ax
 ax = plt.gca();
