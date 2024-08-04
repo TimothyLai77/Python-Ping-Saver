@@ -7,11 +7,12 @@ import csv
 
 # for naming the file on script start
 now = datetime.now()
-startTime = now.strftime("%m%d%Y")
+startTime = now.strftime("%m%d%Y%_H%M")
 count = 0 # number of pings 
 average = 0
 sum = 0
-
+threshold = 200 # define a threshold for high ping values
+highPingCount = 0;
 # run until ctrl-c lul
 while True:
     # make the ping and save the output
@@ -30,14 +31,19 @@ while True:
         #(ping)
         if ping:
             pingTime = ping.group(1)
+
+            if float(pingTime) >= threshold:
+                highPingCount += 1
+
             sum+=float(pingTime)
             average=sum/count
     else:
         pingTime = 'error/timedout'
-    
+
+
     # write data to file
-    toWrite = [date_now, time_now, pingTime]
-    #print(toWrite)
+    toWrite = [date_now, time_now, pingTime, highPingCount]
+    # print(toWrite)
     with open(startTime+'_ping.csv', 'a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(toWrite)
