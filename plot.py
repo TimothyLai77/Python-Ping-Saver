@@ -1,6 +1,13 @@
 from matplotlib import pyplot as plt
 from matplotlib import ticker
 import pandas as pd
+import sys
+# Command Line args to plot on log scale or not
+if(len(sys.argv) > 1 and sys.argv[1] == 'log') :
+    plotOnLog = True
+else:
+    plotOnLog = False
+
 
 plt.rcParams["figure.figsize"] = [20, 10]
 plt.rcParams["figure.autolayout"] = True
@@ -28,7 +35,9 @@ ax.set_xticks(xticks[::len(xticks) // 10]) # set new tick positions
 ax.tick_params(axis='x', rotation=30) # set tick rotation
 
 # Log scale yaxis tick formatting: https://stackoverflow.com/a/61352317
-ax.set_yscale('log') # change y scale
+
+if plotOnLog : 
+    ax.set_yscale('log') # change y scale
 ax.yaxis.set_major_locator(ticker.MultipleLocator(100))  # major y tick positions every 100
 
 ax.yaxis.set_minor_locator(ticker.NullLocator())  # no minor ticks
