@@ -21,7 +21,7 @@ plt.scatter(dataFrame.Time, dataFrame.Ping,s=3, alpha=0.5,c=dataFrame.Ping, cmap
 
 # get current axes and assign to ax
 ax = plt.gca();
-
+ax.set_facecolor('#c2c2c2')
 # change the ticks along the x axis
 xticks = ax.get_xticks() # returns list of x locations?
 ax.set_xticks(xticks[::len(xticks) // 10]) # set new tick positions
@@ -42,6 +42,7 @@ plt.plot(dataFrame.Time, dataFrame.highPing)
 
 # x axis stuff.... Can't really be bothered to figure out how to not duplicate code but whatever
 ax = plt.gca();
+ax.set_facecolor('#c2c2c2')
 xticks = ax.get_xticks() # returns list of x locations?
 ax.set_xticks(xticks[::len(xticks) // 10]) # set new tick positions
 ax.tick_params(axis='x', rotation=30) # set tick rotation
