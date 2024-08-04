@@ -1,7 +1,7 @@
 from matplotlib import pyplot as plt
 import pandas as pd
 
-plt.rcParams["figure.figsize"] = [7.00, 3.50]
+plt.rcParams["figure.figsize"] = [20, 10]
 plt.rcParams["figure.autolayout"] = True
 
 # read data
@@ -12,7 +12,16 @@ if 'error/timedout' in dataFrame.values :
     dataFrame['Ping'] = dataFrame['Ping'].str.replace('error/timedout', '0') # replace the errors with 0
     dataFrame['Ping'] = dataFrame['Ping'].astype(float) # convert data from string to float
 
+
 # graph stuff
-plt.scatter(dataFrame.Time, dataFrame.Ping) # plot
+
+plt.scatter(dataFrame.Time, dataFrame.Ping,s=3, alpha=0.5,c=dataFrame.Ping, cmap='plasma') # plot
+xticks = plt.gca().get_xticks()
+plt.gca().set_xticks(xticks[::len(xticks) // 10]) # set new tick positions
+plt.gca().tick_params(axis='x', rotation=30) # set tick rotation
+
+
 plt.gcf().autofmt_xdate() # format the dates
+
+plt.savefig('plot.png');
 plt.show() # show graph
