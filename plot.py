@@ -38,17 +38,26 @@ ax.tick_params(axis='x', rotation=30) # set tick rotation
 
 if plotOnLog : 
     ax.set_yscale('log') # change y scale
+    logScaleTitle=' [log scale]'
+else:
+    logScaleTitle=' [linear scale]'
 ax.yaxis.set_major_locator(ticker.MultipleLocator(100))  # major y tick positions every 100
 
 ax.yaxis.set_minor_locator(ticker.NullLocator())  # no minor ticks
 ax.yaxis.set_major_formatter(ticker.ScalarFormatter())  # set regular formatting
 
 plt.gcf().autofmt_xdate() # format the dates
+plt.title("Raw Plot (ms vs. Time)"+logScaleTitle)# the tihe graph
+
+# add y=200 line to see pings past threshold
+threshold=200
+plt.axhline(y = threshold, color = 'r', alpha=0.5, linestyle = 'dotted') 
+
 
 # ------------- Plot High Pings -------------
 plt.subplot(1, 2, 2)
 plt.plot(dataFrame.Time, dataFrame.highPing)
-
+plt.title("Cumulative # of pings past threshold="+str(threshold)+" ms")
 # x axis stuff.... Can't really be bothered to figure out how to not duplicate code but whatever
 ax = plt.gca();
 ax.set_facecolor('#c2c2c2')
