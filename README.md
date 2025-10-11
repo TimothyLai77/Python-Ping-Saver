@@ -8,6 +8,10 @@ Pings www.google.com about every second and writes to a csv file with the format
 
   - This is actually pretty dumb, you can probably do this with pandas or numpy somehow but this was faster to do.
 
-# Sample Plot
+# Sample Plots
 
-![sample plot](./docs/sampleplot.png)
+### Older Version of plot.py but with more interesting data
+![sample plot](./docs/sampleplot_1.png)
+
+### Current Version of plot.py with less interesting data
+![sample plot](./docs/sampleplot_2.png)
