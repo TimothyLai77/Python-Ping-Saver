@@ -10,4 +10,4 @@ Pings www.google.com about every second and writes to a csv file with the format
 
 # Sample Plot
 
-![sample plot](https://raw.githubusercontent.com/TimothyLai77/Python-Ping-Saver/main/sampleplot.png)
+![sample plot](./docs/sampleplot.png)
